@@ -1,0 +1,14 @@
+.buttonGreen{
+    background-color: green;
+    padding: 0.5rem;
+    color: wheat    ;
+    border: none;
+}
+
+.buttonRed{
+    background-color: red;
+    padding: 0.5rem;
+    color: wheat    ;
+    border: none;
+}
+
