@@ -1,0 +1,26 @@
+.navbar{
+ background-color: rgb(95, 25, 25) !important;
+}
+
+.titleNavbar{
+color: rgba(246, 250, 7, 0.767) !important;
+font-style: italic;
+font-weight: 300;
+}
+
+.textNavbarColor{
+    color: rgba(246, 250, 7, 0.767) !important;
+    font-weight: lighter;
+}
+
+.buttonNavbarColor{
+    background-color: rgb(95, 25, 25) !important;
+    color: rgba(246, 250, 7, 0.767) !important;
+    border-color: rgba(246, 250, 7, 0.767) !important;
+}
+
+.buttonNavbarColor:hover{
+    background-color: rgba(246, 250, 7, 0.767) !important;
+    color: rgb(95, 25, 25) !important;
+    border-color: rgba(246, 250, 7, 0.767) !important;
+}
