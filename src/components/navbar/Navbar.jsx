@@ -8,21 +8,12 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import style from  './navBar.module.css';
 
 function OffcanvasExample({ onSearch }) {
-  const expand = 'lg'; // scegli la dimensione dello schermo che desideri
+  const expand = 'lg'; // scelgo la dimensione dello schermo che desidero
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
     onSearch(e.target.value);
-  };
-
-  const handleSearch = () => {
-    onSearch(searchTerm);
-  };
-
-  const handleClearSearch = () => {
-    setSearchTerm(''); // Svuota l'input di ricerca
-    onSearch(''); // Passa una stringa vuota per visualizzare tutti i libri non filtrati
   };
 
   return (
@@ -53,10 +44,8 @@ function OffcanvasExample({ onSearch }) {
                 className="me-2"
                 aria-label="Search"
                 value={searchTerm}
-                onChange={handleInputChange} // Aggiungiamo l'evento onChange per gestire l'input
+                onChange={handleInputChange} // Aggiungo l'evento onChange per gestire l'input
               />
-              <Button className={style.buttonNavbarColor} onClick={handleSearch}>Search</Button>
-              <Button className={style.buttonNavbarColor} onClick={handleClearSearch}>Clear</Button> {/* Aggiungiamo il pulsante per cancellare la ricerca */}
             </Form>
           </Offcanvas.Body>
         </Navbar.Offcanvas>

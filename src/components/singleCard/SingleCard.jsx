@@ -1,19 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './singleCard.css';
+import ModalButton from '../modal/ModalButton';
 
+function SingleCard({ title, img, price, category, asin }) {
+  const [hovered, setHovered] = useState(false);
 
-function SingleCard({title, img, price, category, asin}) {
+  const handleMouseEnter = () => {
+    setHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+  };
+
   return (
-    <div className='cardContainer'>
-        <h2>{title}</h2>
-        <img className='card-img' src={img} alt={title} />
-        <div className='details'>
-        <p className='price'>{price}</p>
-        <p className='category'>{category}</p>
-        <p className='asin'>{asin}</p>
+    <div
+      className={`cardContainer ${hovered ? 'hovered' : ''}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className="card-img" style={{ backgroundImage: `url(${img})` }} />
+      <div className="details">
+        <h2 className="hover-title">{title}</h2>
+        <p className="price">{price}</p>
+        <p className="category">{category}</p>
+        <p className="asin">{asin}</p>
+        <ModalButton
+        asin={asin}
+        />
       </div>
     </div>
-  )
+  );
 }
 
-export default SingleCard
+export default SingleCard;

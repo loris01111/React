@@ -19,7 +19,7 @@ const App = () => {
 
   const handleSearch = (searchTerm) => {
     if (searchTerm === '') {
-      setFilteredBooks(booksNotFiltered); // Ripristina i libri non filtrati quando l'input di ricerca è vuoto
+      setFilteredBooks(booksNotFiltered); // Ripristino i libri non filtrati quando l'input di ricerca è vuoto
     } else {
       const filtered = arrayAllBooks.filter((book) => {
         return book.title.toLowerCase().includes(searchTerm.toLowerCase());
