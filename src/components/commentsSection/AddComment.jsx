@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Form } from 'react-bootstrap';
 import { useState } from 'react';
 
-function AddComment({ asin }) {
+function AddComment({ asin, toggleRender }) {
 
     const URLPost = 'https://striveschool-api.herokuapp.com/api/comments';
 
@@ -33,6 +33,9 @@ const addComment = async (e) => {
     });
     const data = await response.json();
     console.log(data);
+    if (response.ok) {
+        toggleRender();
+    }
     return data;
    } catch (error) {
     console.log(error);

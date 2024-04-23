@@ -24,10 +24,7 @@ function SingleCard({ title, img, price, category, asin }) {
         <h2 className="hover-title">{title}</h2>
         <p className="price">{price}</p>
         <p className="category">{category}</p>
-        <p className="asin">{asin}</p>
-        <ModalButton
-        asin={asin}
-        />
+        {hovered && <ModalButton asin={asin} />}
       </div>
     </div>
   );

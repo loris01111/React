@@ -7,9 +7,11 @@ import AddComment from '../commentsSection/AddComment';
 
 function ModalButton({ asin }) {
     const [show, setShow] = useState(false);
+    const [render, setRender] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const toggleRender = () => setRender(!render);
 
     return (
         <>
@@ -24,11 +26,15 @@ function ModalButton({ asin }) {
                 <Modal.Body>
                     <CommentList
                         asin={asin}
+                        renderState={render}
+                        toggleRender={toggleRender}
                     />
                     <AddComment
-                    asin={asin}
+                        asin={asin}
+                        renderState={render}
+                        toggleRender={toggleRender}
                     />
-                    </Modal.Body>
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="warning" onClick={handleClose}>
                         Close
