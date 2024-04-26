@@ -44,7 +44,7 @@ const App = () => {
     <>
       <Navbar onSearch={handleSearch} />
       <Title />
-      <Link variant={'info'} />
+      <Link variant="danger" text="This is where you can find whatever you like" />
       <AllBooks books={filteredBooks} />
       <Footer />
     </>

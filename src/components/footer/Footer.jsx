@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './footer.css';
+import { ThemeContext } from '../../contexts/ThemContext';
 
 function Footer() {
+
+  const {isDarkMode} = useContext(ThemeContext);
+
   return (
     <footer >
-      <div className="container-fluid footer mt-5 pt-2">
+      <div className={`container-fluid mt-5 pt-2 ${isDarkMode? 'bg-black colorTextFooter' : 'footer'}`}>
         <div className="row">
           <div className="col-md-6">
             <h3>About Us</h3>
@@ -21,7 +25,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="bottom-bar footer">
+      <div className={`bottom-bar ${isDarkMode? 'bg-black colorTextFooter' : 'footer'}`}>
         <div className="container">
           <p>&copy; 2024 MyWebsite. All rights reserved.</p>
         </div>

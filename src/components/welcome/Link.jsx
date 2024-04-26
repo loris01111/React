@@ -6,11 +6,9 @@ function Link(props) {
     <Container>
       <Row>
         <Col>
-        <Alert className='py-4 my-4' variant={props.variant}>
-      This is a {props.variant} alert with{' '}
-      <Alert.Link href="#">an example link</Alert.Link>. Give it a click if
-      you like.
-    </Alert>
+          <Alert className='py-4 my-4' variant={props.variant}>
+            {props.text}
+          </Alert>
         </Col>
       </Row>
     </Container>

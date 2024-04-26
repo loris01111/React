@@ -7,6 +7,8 @@ import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import style from './navBar.module.css';
 import { ThemeContext } from '../../contexts/ThemContext';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function OffcanvasExample({ onSearch }) {
   const expand = 'lg'; // scelgo la dimensione dello schermo che desidero
@@ -52,9 +54,9 @@ function OffcanvasExample({ onSearch }) {
               />
               <Button
                 variant="light"
-                className={`${style.darkModeButtonSize} ${style.darkModeButton} btn-sm`}
+                className={`${style.darkModeButtonSize} ${style.darkModeButton} btn-sm px-3`}
                 onClick={toggleDarkMode}>
-                    {isDarkMode? 'Light Mode' : 'Dark Mode'}
+                    {isDarkMode? <FontAwesomeIcon icon={faSun} style={{ fontSize: '1.5em'}} /> : <FontAwesomeIcon icon={faMoon} style={{ fontSize: '1.5em'}}/> }
               </Button>
             </Form>
           </Offcanvas.Body>

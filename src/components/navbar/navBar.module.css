@@ -38,7 +38,7 @@ font-weight: 300;
   }
   
   .darkModeButtonSize  {
-    padding: 0.05rem 0.05rem !important; 
+    padding: 0.6rem!important; 
     font-size: 0.875rem !important; 
     height: auto !important; 
 }
