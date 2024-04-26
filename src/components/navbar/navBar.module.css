@@ -24,3 +24,21 @@ font-weight: 300;
     color: rgb(95, 25, 25) !important;
     border-color: rgba(246, 250, 7, 0.767) !important;
 }
+
+.darkModeButton {
+    background-color: rgb(95, 25, 25) !important;
+    color: rgba(246, 250, 7, 0.767) !important;
+    border-color: rgba(246, 250, 7, 0.767) !important;
+  }
+  
+  .darkModeButton:hover {
+    background-color: rgba(246, 250, 7, 0.767) !important;
+    color: rgb(95, 25, 25) !important;
+    border-color: rgba(246, 250, 7, 0.767) !important;
+  }
+  
+  .darkModeButtonSize  {
+    padding: 0.05rem 0.05rem !important; 
+    font-size: 0.875rem !important; 
+    height: auto !important; 
+}

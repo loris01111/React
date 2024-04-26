@@ -1,23 +1,27 @@
-import React, { useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import style from  './navBar.module.css';
+import style from './navBar.module.css';
+import { ThemeContext } from '../../contexts/ThemContext';
 
 function OffcanvasExample({ onSearch }) {
   const expand = 'lg'; // scelgo la dimensione dello schermo che desidero
   const [searchTerm, setSearchTerm] = useState('');
-
+  
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
     onSearch(e.target.value);
   };
+  
+  const {isDarkMode, toggleDarkMode} = useContext(ThemeContext);
+
 
   return (
-    <Navbar expand={expand} className={` p-3  mb-3 ${style.navbar}`}>
+    <Navbar expand={expand} className={`p-3 mb-3 ${isDarkMode ? 'bg-black' : style.navbar}`}>
       <Container fluid>
         <Navbar.Brand className={style.titleNavbar} href="#">BookLand</Navbar.Brand>
         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
@@ -46,6 +50,12 @@ function OffcanvasExample({ onSearch }) {
                 value={searchTerm}
                 onChange={handleInputChange} // Aggiungo l'evento onChange per gestire l'input
               />
+              <Button
+                variant="light"
+                className={`${style.darkModeButtonSize} ${style.darkModeButton} btn-sm`}
+                onClick={toggleDarkMode}>
+                    {isDarkMode? 'Light Mode' : 'Dark Mode'}
+              </Button>
             </Form>
           </Offcanvas.Body>
         </Navbar.Offcanvas>

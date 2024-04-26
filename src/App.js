@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Navbar from './components/navbar/Navbar';
 import Title from './components/welcome/Title';
 import Link from './components/welcome/Link';
@@ -9,6 +9,7 @@ import historyBooks from './dataBooks/history.json';
 import horrorBooks from './dataBooks/horror.json';
 import romanceBooks from './dataBooks/romance.json';
 import scifiBooks from './dataBooks/scifi.json';
+import { ThemeContext } from '../src/contexts/ThemContext';
 
 const arrayAllBooks = [...fantasyBooks, ...historyBooks, ...horrorBooks, ...romanceBooks, ...scifiBooks];
 
@@ -28,14 +29,25 @@ const App = () => {
     }
   };
 
+  const {isDarkMode} = useContext(ThemeContext);
+
+  const changeBgBody = () => {
+    isDarkMode? document.body.classList.add('bg-black') : document.body.classList.remove('bg-black');
+  }
+
+  useEffect(() => {
+    changeBgBody();
+  },[isDarkMode])
+
+
   return (
-    <React.Fragment>
+    <>
       <Navbar onSearch={handleSearch} />
       <Title />
       <Link variant={'info'} />
       <AllBooks books={filteredBooks} />
       <Footer />
-    </React.Fragment>
+    </>
   );
 }
 
