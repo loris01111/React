@@ -1,0 +1,29 @@
+.comment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.buttons-container {
+    display: flex;
+}
+
+.update-button,
+.delete-button {
+    background-color: #E0A800;
+    border: none;
+    color:  rgb(95, 25, 25) ;
+    padding: 8px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.delete-button-color{
+    background-color: #C82333 !important;
+}

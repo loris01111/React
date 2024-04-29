@@ -1,0 +1,19 @@
+.title{
+    display: flex;
+    justify-content: center;
+    color: rgb(213, 216, 32);
+    padding-top: 10px;
+    font-weight: 400;
+    font-style: italic;
+    animation: fade-in 1.5s ease-out forwards; /* Animazione di sbiadimento */
+}
+
+@keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
