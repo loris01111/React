@@ -1,21 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import SingleCard from '../singleCard/SingleCard';
 import CommentArea from '../commentArea/CommentArea';
 
 function TwoColumnLayout({ books, handleReviewClick, selectedCardIndex, showCommentArea }) {
-
     const [showCommentAreas, setShowCommentAreas] = useState({});
+    const [selectedBookAsin, setSelectedBookAsin] = useState(null);
 
     const booksByCategory = books.reduce((acc, book) => {
         acc[book.category] = acc[book.category] || [];
         acc[book.category].push(book);
         return acc;
     }, {});
+    useEffect(() => {
+        // Inizializza lo stato di showCommentAreas per tutte le categorie quando il componente viene montato
+        const initialShowCommentAreas = books.reduce((acc, book) => {
+            acc[book.category] = false;
+            return acc;
+        }, {});
+        setShowCommentAreas(initialShowCommentAreas);
+    }, [books]);
 
-    const leftColSize = showCommentArea ? { md: 9 } : { md: 12 };
 
-    const handleReviewClickInternal = (index, category) => {
+
+    const handleReviewClickInternal = (index, category, asin) => {
         setShowCommentAreas(prevState => ({
             ...prevState,
             [category]: true
@@ -23,6 +31,12 @@ function TwoColumnLayout({ books, handleReviewClick, selectedCardIndex, showComm
         handleReviewClick(index);
     };
 
+    const handleCommentAreaClose = (category) => {
+        setShowCommentAreas(prevState => ({
+            ...prevState,
+            [category]: false
+        }));
+    };
 
     return (
         <Container>
@@ -30,8 +44,7 @@ function TwoColumnLayout({ books, handleReviewClick, selectedCardIndex, showComm
                 <div key={category}>
                     <h2 className='titleCategory ps-3 pb-3'>{category}</h2>
                     <Row>
-                        {/* Colonna di sinistra */}
-                        <Col {...leftColSize}>
+                        <Col>
                             <Row>
                                 {categoryBooks.slice(0, 12).map((book, index) => (
                                     <Col key={`singleCard-${index}`} className="mb-4">
@@ -39,27 +52,30 @@ function TwoColumnLayout({ books, handleReviewClick, selectedCardIndex, showComm
                                             title={book.title}
                                             img={book.img}
                                             asin={book.asin}
-                                            handleReviewClick={() => handleReviewClickInternal(index, category)}
+                                            handleReviewClick={() => handleReviewClickInternal(index, category, book.asin)}
                                         />
                                     </Col>
                                 ))}
                             </Row>
                         </Col>
-                        {/* Colonna di destra solo se showCommentArea è true */}
+                         {/* Console log per controllare il valore di showCommentAreas[category] */}
+                    {console.log("Valore di showCommentAreas[category]:", showCommentAreas[category])}
+                    {/* Colonna di destra solo se showCommentArea è true */}
                         {showCommentAreas[category] && (
                             <Col md={3}>
                                 <div>
                                     {categoryBooks[selectedCardIndex] && (
                                         <CommentArea
-                                        asin={categoryBooks[selectedCardIndex].asin}
+                                            asin={categoryBooks[selectedCardIndex].asin}
+                                            selectedBookAsin={selectedBookAsin}
+                                            handleCommentAreaClose={() => handleCommentAreaClose(category)}
+                                            category={category}
                                         />
                                     )}
                                 </div>
                             </Col>
                         )}
-
                     </Row>
-                    {/* Bottone "Show all" */}
                     {categoryBooks.length > 12 && (
                         <Row className="mt-3">
                             <Col className='d-flex justify-content-center'>
