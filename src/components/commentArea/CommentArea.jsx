@@ -4,11 +4,18 @@ import Button from 'react-bootstrap/Button';
 import CommentList from '../commentsSection/CommentList';
 import AddComment from '../commentsSection/AddComment';
 
-function CommentArea({asin}) {
+function CommentArea({ asin, selectedBookAsin, handleCommentAreaClose, category}) {
     const [show, setShow] = useState(true);
     const [render, setRender] = useState(false);
 
     const toggleRender = () => setRender(!render);
+
+    const handleClose = (category) => {
+        console.log("Closing Comment Area");
+        setShow(false);
+        handleCommentAreaClose(category); // Passa la categoria come argomento
+    };
+    
 
     return (
         <>
@@ -19,24 +26,23 @@ function CommentArea({asin}) {
                         asin={asin}
                         renderState={render}
                         toggleRender={toggleRender}
+                        selectedBookAsin={selectedBookAsin}
                     />
                 </div>
                 <hr />
                 <div>
-                <AddComment
+                    <AddComment
                         asin={asin}
                         renderState={render}
                         toggleRender={toggleRender}
                     />
                 </div>
                 <div className="d-flex justify-content-end">
-                    <Button onClick={() => setShow(false)} variant="outline-success">
+                    <Button onClick={() => handleClose(category)} variant="outline-success">
                         Close me
                     </Button>
                 </div>
             </Alert>
-
-            {!show && <Button onClick={() => setShow(true)}>Show Alert</Button>}
         </>
     );
 }
